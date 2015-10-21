@@ -27,10 +27,12 @@ module BinTree
       self
     end
 
-    def find(value, mode = :bfs)
+    def find(value, mode = :dfs)
       algorithm = mode.to_sym
 
       case algorithm
+      when :dfs
+        return depth_first_search(value)
       when :bfs
         return breadth_first_search(value)
       else
@@ -40,7 +42,7 @@ module BinTree
 
     private
 
-    def breadth_first_search(value)
+    def depth_first_search(value)
       queu = []
       node = self
       until node == nil || node.value == value
@@ -48,6 +50,18 @@ module BinTree
         queu << node.right_child if node.right_child
 
         node = queu.pop || nil
+      end
+      node
+    end
+
+    def breadth_first_search(value)
+      queu = []
+      node = self
+      until node == nil || node.value == value
+        queu << node.left_child if node.left_child
+        queu << node.right_child if node.right_child
+
+        node = queu.shift || nil
       end
       node
     end
