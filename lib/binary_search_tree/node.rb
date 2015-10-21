@@ -1,4 +1,4 @@
-module BinTree
+module BinartSearchTree
   class Node
     attr_accessor :value, :left_child, :right_child
 

@@ -1,6 +1,6 @@
 require_relative 'bintree/node'
 
-module BinTree
+module BinartSearchTree
   def self.build_tree(ary)
     values = ary.shuffle
     root_node = Node.new(values.shift)
