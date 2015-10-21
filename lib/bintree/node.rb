@@ -26,5 +26,30 @@ module BinTree
       end
       self
     end
+
+    def find(value, mode = :bfs)
+      algorithm = mode.to_sym
+
+      case algorithm
+      when :bfs
+        return breadth_first_search(value)
+      else
+        raise "Not a valid search mode: #{mode}"
+      end
+    end
+
+    private
+
+    def breadth_first_search(value)
+      queu = []
+      node = self
+      until node == nil || node.value == value
+        queu << node.left_child if node.left_child
+        queu << node.right_child if node.right_child
+
+        node = queu.pop || nil
+      end
+      node
+    end
   end
 end
